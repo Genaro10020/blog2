@@ -22,4 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',HomeController::class);
 Route::get('curso', [CursoController::class,'index'])->name('cursos.index');
 Route::get('curso/create',[CursoController::class,'create'])->name('cursos.create');
-Route::get('curso/{id}',[CursoController::class,'show'])->name('cursos.show');
+Route::post('curso',[CursoController::class,'store'])->name('cursos.store');
+Route::get('curso/{curso}',[CursoController::class,'show'])->name('cursos.show');
+Route::get('curso/{curso}/edit',[CursoController::class,'edit'])->name('cursos.edit');
+Route::put('curso/{curso}',[CursoController::class,'update'])->name('cursos.update');
