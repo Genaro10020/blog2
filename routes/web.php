@@ -20,6 +20,6 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/',HomeController::class);
-Route::get('curso', [CursoController::class,'index']);
-Route::get('curso/create',[CursoController::class,'create']);
-Route::get('curso/{curso}',[CursoController::class,'show']);
+Route::get('curso', [CursoController::class,'index'])->name('cursos.index');
+Route::get('curso/create',[CursoController::class,'create'])->name('cursos.create');
+Route::get('curso/{id}',[CursoController::class,'show'])->name('cursos.show');
