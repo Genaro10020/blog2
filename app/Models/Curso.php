@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Curso extends Model
 {
     use HasFactory;
+    //Forma 1, coloca los campos que deseas que se guarden
+    /*protected $fillable = ['name','descripcion','categoria'];*///con esto unicamente valida e inserta estos campos
+    //Forma 2, coloca los campos que no deseas que se guarden o ignore
+    protected $guarded = ['status'];// calocampos los campos protegidos
+
 }

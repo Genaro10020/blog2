@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\StoreCurso;
 class CursoController extends Controller
 {
 
@@ -19,20 +19,23 @@ class CursoController extends Controller
     }
 
 
-    public function store(Request $request){ /*Metodo Request con objeto request*/
+    public function store(StoreCurso $request){ /*Metodo Request con objeto request*/
        
-       $request->validate([
-           'name' => 'required|max:10',
-           'descripcion' => 'required|min:10',
-           'categoria' => 'required'
-       ]);
+
        
-       
-        $curso = new Curso();
+        /*$curso = new Curso(); // todo esto es similar a lo que esta abajo
         $curso->name = $request->name;
         $curso->descripcion = $request->name;
         $curso->categoria = $request->name;
-        $curso->save();
+        $curso->save();*/
+        
+        /*$curso = Curso::create([/*crea el objeto y salva a la vez forma 2*/ 
+        /*    'name'=> $request->name,
+            'descripcion'=> $request->descripcion,
+            'categoria'=> $request->categoria
+        ]);*/
+
+        $curso = Curso::create($request->all());
         return redirect()->route('cursos.show', $curso);
     }
 
@@ -54,16 +57,22 @@ class CursoController extends Controller
         'descripcion'=>'required',
         'categoria' =>'required'  
         ]);
-
-        $curso->name = $request->name;
+        //Forma 1
+       /* $curso->name = $request->name;
         $curso->descripcion = $request->descripcion;
         $curso->categoria = $request->categoria;
 
-       $curso->save();
+       $curso->save();*/
+        //Forma 2
+       $curso->update($request -> all());
 
        return redirect()->route('cursos.show',$curso);
 
     }
 
-   
+
+    public function destroy(Curso $curso){
+        $curso ->delete();
+        return redirect()->route('cursos.index',$curso);
+    }
 }
