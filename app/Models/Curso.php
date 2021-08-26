@@ -12,5 +12,10 @@ class Curso extends Model
     /*protected $fillable = ['name','descripcion','categoria'];*///con esto unicamente valida e inserta estos campos
     //Forma 2, coloca los campos que no deseas que se guarden o ignore
     protected $guarded = ['status'];// calocampos los campos protegidos
+     
+    public function getRouteKeyName()
+    {
+        return 'slug';// es para que me retorno o me muestre el slug en lugar del id
+    }
 
 }
