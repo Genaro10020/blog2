@@ -28,7 +28,8 @@ Route::get('curso/{curso}/edit',[CursoController::class,'edit'])->name('cursos.e
 Route::put('curso/{curso}',[CursoController::class,'update'])->name('cursos.update');
 Route::delete('curso/{curso}',[CursoController::class,'destroy'])->name('cursos.destroy');*/
 //FORMA 2 Definicion de rutas
-Route::get('/',HomeController::class);
+Route::get('/',HomeController::class)->name('home');
 Route::resource('cursos', CursoController::class);
+Route::view('nosotros', 'nosotros')->name('nosotros');//para mostra contenido statico
 //Route::resource('asignaturas', CursoController::class)->parameters(['asignaturas'=> 'curso'])->names('cursos'); 
 //genera las rutas y hasta el name de cada ruta todo en pocas palabras.
