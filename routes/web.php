@@ -3,6 +3,8 @@
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactanosMailable;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,11 @@ Route::put('curso/{curso}',[CursoController::class,'update'])->name('cursos.upda
 Route::delete('curso/{curso}',[CursoController::class,'destroy'])->name('cursos.destroy');*/
 //FORMA 2 Definicion de rutas
 Route::get('/',HomeController::class)->name('home');
+Route::get('contactanos', function () {
+    $correo = new ContactanosMailable; //Creamos la instancia
+    Mail::to('iscgenarovp@gmail.com')->send($correo);
+    return "Mensaje enviado..";
+});
 Route::resource('cursos', CursoController::class);
 Route::view('nosotros', 'nosotros')->name('nosotros');//para mostra contenido statico
 //Route::resource('asignaturas', CursoController::class)->parameters(['asignaturas'=> 'curso'])->names('cursos'); 
